@@ -1,21 +1,30 @@
 ---
-title: "My Awesome Article"
+title: "Cost-models for Hybrid Linked Data Fragments Interfaces"
 ---
 <header markdown="1">
 # <%= @item[:title] %>
 
 {:#authors}
-- <%= person 'John Doe', 'http://www.example.org/', 'http://www.example.org/#me' %>
+- <%= person 'Amr Azzam', '#', '#' %>[<sup>1</sup>](#wu)
+- <%= person 'Ruben Taelman', 'http://www.rubensworks.net/', 'http://www.rubensworks.net/#me' %>[<sup>2</sup>](#idlab)
 
 {:#affiliations}
-- {:#myaffiliation} Awesome Inc.
+- {:#wu}   <sup>1</sup>Vienna University of Economics and Business,
+            Vienna, Austria,
+            {firstname.lastname}@wu.ac.at
+- {:#idlab} <sup>2</sup>IDLab,
+            Department of Electronics and Information Systems,
+            Ghent University – imec,
+            {firstname.lastname}@ugent.be
 
 <%= section 'abstract' %>
 </header>
 
 <main>
-  <!-- Add sections by specifying their file name, excluding the '.md' suffix. -->
   <%= section 'introduction' %>
+  <%= section 'solution' %>
+  <%= section 'implementation' %>
+  <%= section 'conclusions' %>
 </main>
 
 <footer></footer>
