@@ -1,10 +1,11 @@
 ## Introduction
 {:#introduction}
 
-This is a great article on the [Semantic Web](cite:cites semanticweb), written in Markdown.
-
-Make sure to [write your document effectively](http://www.treesmapsandtheorems.com/pdfs/TM&Th-2.0-summary.pdf)!
-
-Write proper introduction.
-More information on snippets like this can be found on the [ScholarMarkdown wiki](https://github.com/rubensworks/ScholarMarkdown/wiki/Snippets).
+Definitely cite these papers:
+* LDF+TPF, SmartKG(?), Sage
+* [Towards More Intelligent SPARQL Querying Interfaces](https://cpb-ap-se2.wpmucdn.com/blogs.auckland.ac.nz/dist/b/412/files/2019/10/paper_421.pdf)
+    Problem: No concrete proposals
+* [Intelligent Clients for Replicated Triple Pattern Fragments](https://link.springer.com/chapter/10.1007/978-3-319-93417-4_26)
+    Problem: Only for replicated TPF interfaces, not combining different LDFs.
+* Comunica
 {:.todo}
