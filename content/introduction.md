@@ -9,3 +9,7 @@ Definitely cite these papers:
     Problem: Only for replicated TPF interfaces, not combining different LDFs.
 * Comunica
 {:.todo}
+
+problem: different interfaces have pros/cons -> there's no way of combining them (based on params, load, ...)
+solution: 2 cost-models: server and client
+{:.todo}

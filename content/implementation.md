@@ -1,5 +1,5 @@
 ## Implementation
 {:#implementation}
 
-Write me
+show how we implemented it, or plan for implementation
 {:.todo}

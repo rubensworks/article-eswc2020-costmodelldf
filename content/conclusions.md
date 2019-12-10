@@ -1,5 +1,5 @@
 ## Conclusions
 {:#conclusions}
 
-Write me
+plans for evaluation, perspectives
 {:.todo}
