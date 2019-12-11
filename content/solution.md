@@ -86,11 +86,8 @@ Add citations for query complexity estimations, logs, machine learning
 Based on the server-side cost model,
 the server can wrap over a number of LDF interfaces
 that the publisher wants to expose.
-
-This wrapper is a proxy that can act as a SPARQL endpoint-like interface.
-Just like a SPARQL endpoint, it accepts SPARQL queries.
-Instead of replying with query results,
-it replies with a token and a set of allowed interfaces
+This wrapper is a proxy that accepts SPARQL queries,
+and replies with a token and a set of allowed interfaces
 that have been calculated for the given query using the server-side cost model.
 The token is *required* for performing any requests to any of the wrapped LDF interfaces.
 
@@ -116,8 +113,30 @@ because the client will be likely to make such a subsequent request.
 
 ### Client Component
 
-params
-{:.todo}
+In most cases, the primary goal of clients is to execute queries as fast as possible,
+either in overal execution time,
+or in continuous efficiency.
+There could however be a number of metrics that can soften this need for fast query execution,
+such as reducing CPU or bandwidth usage.
 
-Also mention clients combining different interfaces at the same time (e.g. tpf + smartkg)
 {:.todo}
+Cite Maribel's diefficiency for continuous efficiency.
+
+Using the server-side hybrid of LDF interfaces that was explained before,
+clients will retrieve a set of allowed interfaces based on a given query.
+Based on these interfaces, the client should determine a query plan that makes use of the interfaces
+in such a way that is as efficient as possible with respect to the client's metrics.
+While most client-side query algorithms focus on splitting up queries for execution against a single type of interface,
+new algorithms could be designed for this that *intelligently combine interfaces* for certain subqueries.
+
+Next to client metrics, there could be additional parameters that could influence
+the selection of interfaces to query from.
+For example, if the client knows beforehand that it will have to execute *many* queries against the same dataset,
+then it might be more efficient to download the full dump of the dataset,
+even if a SPARQL endpoint was allowed for the initial query.
+Another case that can influence interface selection
+would be when certain partial dumps of the dataset are already available locally,
+or within a network of peers.
+
+{:.todo}
+Cite P2P querying within browsers
