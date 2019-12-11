@@ -6,3 +6,6 @@ tmp
 output
 *.log
 *.diff
+
+*.fdb_latexmk
+*.fls
