@@ -78,7 +78,24 @@ solution: 2 cost-models: server and client</p>
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Solution</h2>
 
-      <p class="todo">Write me</p>
+      <p>The goal of our proposed framework
+is to allow servers to expose different kinds of interfaces
+based on the current server load and the used SPARQL queries.
+Instead of making the server allow <em>just one interface</em> type per query,
+we propose allowing a <em>collection of interfaces</em> to be exposed per query.
+This allows the client to select the most desired interface
+based on the clients capabilities and circumstances.</p>
+
+      <p>To achieve such a hybrid of server interfaces,
+we make use of a server-side cost model for selecting a set of interfaces based on a given query,
+and a client-side cost model for determining a query execution plan based on the allowed interfaces.
+<a href="#figure-solution">Fig. 1</a> shows an overview of this framework
+where client-side query engines start by sending a query <code>q</code> to the server,
+and receive an answer that contains a token <code>t</code> and a set of allowed interfaces <code>I</code>.
+Based on the returned interfaces,
+the client can determine a query decomposition over these interfaces.
+These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
+Hereafter, we explain the server and client processes in more detail.</p>
 
       <figure id="figure-solution">
 <img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" />
