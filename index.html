@@ -106,7 +106,111 @@ Hereafter, we explain the server and client processes in more detail.</p>
 
       <h3 id="server-component">Server Component</h3>
 
-      <p class="todo">params</p>
+      <p>The server component of our framework consists of two elements:</p>
+
+      <ol>
+        <li>A cost model for calculating a set of allowed interfaces based on a given query and a set of internal metrics.</li>
+        <li>A token-based wrapper over a set of existing LDF interfaces.</li>
+      </ol>
+
+      <p>We explain these two elements hereafter.</p>
+
+      <h4 id="cost-model">Cost Model</h4>
+
+      <p>The goal of this server-side cost model is two-fold:</p>
+
+      <ol>
+        <li>The availability of the server must be ensured.</li>
+        <li>Queries must be executed as fast as possible.</li>
+      </ol>
+
+      <p>Since the second goal can sometimes be detrimental to the server availability,
+for example when many concurrent users are sending highly complex queries,
+the first goal must always have priority in the model.</p>
+
+      <p>Based on these goals, the model should be able to make a suggestion for a set of interfaces
+based on a given query and a set of internal metrics.
+For this, we propose a set of internal metrics such as the current CPU usage, memory usage and network I/O.
+The server administrator must be able to configure an upper limit for these metrics,
+so that the cost model can select interfaces that optimize both goals.</p>
+
+      <p><a href="#algorithm-get-allowed-interfaces">Listing 1</a> shows the pseudocode of an algorithm
+that can be used to calculate a set of allowed interfaces.
+For each incoming query <code>q</code>,
+the algorithm iterates over all available interfaces, and all metrics.
+For each metric, the expected metric value increase is calculated
+for the given query using <code>CalculateMetricIncrease(q, metric)</code>.
+If when adding this value to the current metric’s value does not exceed the maximum allowed metric value,
+then the loop continues.
+If all metrics pass for a given interface,
+then an interface is considered an <em>allowed interface</em>.</p>
+
+      <figure id="algorithm-get-allowed-interfaces" class="listing">
+<pre><code>FUNCTION GetAllowedInterfaces(q, metrics, interfaces, MetricsCurrent, MetricsMax)
+</code><code>  INPUT:
+</code><code>    q: a SPARQL query
+</code><code>    metrics: a set of metrics applicable for the cost model
+</code><code>    interfaces: a set of available interfaces
+</code><code>    MetricsCurrent: function to get the current value of a metric
+</code><code>    MetricsMax: function to get the maximum allowed value of a metric
+</code><code>  OUTPUT:
+</code><code>    set of allowed interfaces
+</code><code>allowedInterfaces = []
+</code><code>FOREACH interface IN interfaces
+</code><code>  validInterface = true
+</code><code>  FOREACH metric IN metrics
+</code><code>    increase = CalculateMetricIncrease(q, interface)
+</code><code>    IF MetricsCurrent(metric) + increase &gt; MetricsMax(metric)
+</code><code>      validInterface = false
+</code><code>  IF validInterface
+</code><code>    allowedInterfaces.push(validInterface)
+</code><code>RETURN allowedInterfaces</code></pre>
+<figcaption>
+          <p><span class="label">Listing 1:</span> Algorithm for calculating the allowed interfaces for a given query.</p>
+        </figcaption>
+</figure>
+
+      <p>Based on our algorithm, the <code>CalculateMetricIncrease</code> still needs a concrete implementation.
+For this, different possibilities exist.
+For instance, heuristics for query complexity can be used to estimate metric value increases,
+such as query string length, the depth of the basic graph patterns or the used query operators.
+Furthermore, other implementations may be based on query log analysis,
+where models could be based on machine learning techniques.</p>
+
+      <p class="todo">Add citations for query complexity estimations, logs, machine learning</p>
+
+      <h4 id="interface-wrapper">Interface Wrapper</h4>
+
+      <p>Based on the server-side cost model,
+the server can wrap over a number of LDF interfaces
+that the publisher wants to expose.</p>
+
+      <p>This wrapper is a proxy that can act as a SPARQL endpoint-like interface.
+Just like a SPARQL endpoint, it accepts SPARQL queries.
+Instead of replying with query results,
+it replies with a token and a set of allowed interfaces
+that have been calculated for the given query using the server-side cost model.
+The token is <em>required</em> for performing any requests to any of the wrapped LDF interfaces.</p>
+
+      <p>This token should be seen as temporary <em>permission</em>
+to make use of a specific set of query capabilities from the data publisher.
+It is important that the server validates this token upon every request to an LDF interface.
+If the server would not do this,
+a client could simply ignore the set of allowed interfaces,
+and always execute queries against the most expressive interface (e.g. SPARQL endpoint),
+even if this interface was not allowed by the server.</p>
+
+      <p>Optionally, the server could keep track of token usages
+to check whether or not the client does indeed use it
+to execute the query it got permission for, and nothing more.
+Since keeping track of this token usage could require significant server effort,
+simpler heuristics could be used,
+such as limiting the temporal validity of a token to the estimated execution time.</p>
+
+      <p>An optional enhancement of the server could be to directly
+reply with a SPARQL query response
+if the only allowed server was a SPARQL endpoint,
+because the client will be likely to make such a subsequent request.</p>
 
       <h3 id="client-component">Client Component</h3>
 
