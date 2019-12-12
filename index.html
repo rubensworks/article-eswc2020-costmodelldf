@@ -115,7 +115,7 @@ These (sub)queries can then be resolved by requesting the appropriate interfaces
 Hereafter, we explain the server and client processes in more detail.</p>
 
       <figure id="figure-solution">
-<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" />
+<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em" />
 <figcaption>
           <p><span class="label">Fig. 1:</span> Overview of client-server communication for a cost-model-based query execution over a hybrid of Linked Data Fragments interfaces.</p>
         </figcaption>
@@ -164,14 +164,6 @@ then an interface is considered an <em>allowed interface</em>.</p>
 
       <figure id="algorithm-get-allowed-interfaces" class="listing">
 <pre><code>FUNCTION GetAllowedInterfaces(q, metrics, interfaces, MetricsCurrent, MetricsMax)
-</code><code>  INPUT:
-</code><code>    q: a SPARQL query
-</code><code>    metrics: a set of metrics applicable for the cost model
-</code><code>    interfaces: a set of available interfaces
-</code><code>    MetricsCurrent: function to get the current value of a metric
-</code><code>    MetricsMax: function to get the maximum allowed value of a metric
-</code><code>  OUTPUT:
-</code><code>    set of allowed interfaces
 </code><code>allowedInterfaces = []
 </code><code>FOREACH interface IN interfaces
 </code><code>  validInterface = true
