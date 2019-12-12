@@ -1,6 +1,9 @@
 ## Solution
 {:#solution}
 
+Shorten
+{:.todo}
+
 The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
 based on the current server load and the used SPARQL queries.
