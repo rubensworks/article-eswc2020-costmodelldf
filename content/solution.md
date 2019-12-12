@@ -1,4 +1,4 @@
-## Solution
+## Hybrid Framework
 {:#solution}
 
 Shorten
