@@ -1,5 +1,8 @@
-## Solution
+## Hybrid Framework
 {:#solution}
+
+Shorten
+{:.todo}
 
 The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
@@ -21,7 +24,7 @@ These (sub)queries can then be resolved by requesting the appropriate interfaces
 Hereafter, we explain the server and client processes in more detail.
 
 <figure id="figure-solution">
-<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]">
+<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em">
 <figcaption markdown="block">
 Overview of client-server communication for a cost-model-based query execution over a hybrid of Linked Data Fragments interfaces.
 </figcaption>

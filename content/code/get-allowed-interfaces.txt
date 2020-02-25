@@ -1,12 +1,4 @@
 FUNCTION GetAllowedInterfaces(q, metrics, interfaces, MetricsCurrent, MetricsMax)
-  INPUT:
-    q: a SPARQL query
-    metrics: a set of metrics applicable for the cost model
-    interfaces: a set of available interfaces
-    MetricsCurrent: function to get the current value of a metric
-    MetricsMax: function to get the maximum allowed value of a metric
-  OUTPUT:
-    set of allowed interfaces
 allowedInterfaces = []
 FOREACH interface IN interfaces
   validInterface = true
