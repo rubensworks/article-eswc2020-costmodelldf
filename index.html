@@ -11,7 +11,7 @@
   <meta name="citation_author" content="Amr Azzam" />
   <meta name="citation_author" content="Ruben Taelman" />
   
-  <meta name="citation_publication_date" content="2020/02/26" />
+  <meta name="citation_publication_date" content="2020/02/27" />
 </head>
 
 <body prefix="dctypes: http://purl.org/dc/dcmitype/ pimspace: http://www.w3.org/ns/pim/space# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# lsc: http://linkedscience.org/lsc/ns#" typeof="schema:CreativeWork sioc:Post prov:Entity lsc:Research">
@@ -60,56 +60,17 @@ Donec quis lectus eget sem tempor tristique pellentesque in dolor.</p>
   <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Introduction</h2>
+      <p>Knowledge Graphs (KGs) have become vital assets to provide scalable knowledge models that allow end-users to represent, search and explore facts about entities and discover relationships that are challenging to observe in real life.</p>
 
-      <p class="comment" data-author="RT">This intro may be a bit too high-level, everyone at the conference will already know this stuff :-)
-I guess we can just introduce KGs in a sentence or so, and them immediately try to focus on the problem of publishing KGs on the Web, and motivating why a cost model is needed.</p>
+      <p>The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query service. However, enabling live queryable Knowledge Graphs on the Web is hardly possible due to the well-known <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">low availability</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and expensive hosting of SPARQL endpoints despite their impressive query capabilities. On the other hand, offering offline data dumps does not lead us to the desired reliable Web querying to the public Knowledge Graphs regardless of their low-cost server hosting.</p>
 
-      <p>Knowledge Graphs (KGs) become vital assets to provide scalable knowledge models that allow end users to represent, search and explore facts about entities and discover relationships and connections among them which could be challenging to observe in real life. Most Web Knowledge Graphs <span class="rephrase">are created on</span>, following Linked Data (LD) standards <span class="references">[<a href="#ref-1">1</a>]</span>, based on RDF data model for publishing and SPARQL as a querying language.</p>
+      <p>Alternatively, Linked Data Fragments (LDF) <span class="references">[<a href="#ref-2">2</a>]</span> introduced the foundation of a framework that urges the research the direction of exploring the range of potential Web querying interfaces that come between the two extremist solutions. LDF aims to investigate the pros and cons of solutions that distribute the load of the query execution between the clients and the server.</p>
 
-      <p>The rapid growth of open and decentralized Knowledge Graphs over the Web have created an immense demand for public Knowledge Graph query services. However, enabling live queryable Knowledge Graphs on the Web is hardly possible due to the <span class="reference needed">well-known low availability and expensive hosting of SPARQL endpoints despite their impressive query capabilities</span>. On the other hand, offering offline data dumps does not lead us to the desired reliable Web querying to the public Knowledge Graphs regardless of the their low-cost server hosting.</p>
+      <p>Several approaches have emerged following LDF framework such as Triple Pattern Fragment variants <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragment (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted Triple Pattern Fragments (brTPF) <span class="references">[<a href="#ref-3">3</a>]</span>, SaGe <span class="references">[<a href="#ref-2">2</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span> which fortunately improved the server scalability and concurrency. Hence there was an inevitable trade-off between the server availability and the query performance. For instance,TPF and brTPF increase the server availability with the cost of high network load. while SaGe enhances the average query performance with the expenses of undesirable server performance when several complex queries are running on the server simultaneously. Finally, smart-KG insures the highest availability of all previously mentioned approaches with the penalty of high client resources usage.</p>
 
-      <p>Alternatively, <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments (LDF)</a></span> <span class="references">[<a href="#ref-2">2</a>]</span> introduced the foundation of a framework that urges the research the direction of exploring the range of potential Web querying interfaces that come between the woe extremist solutions. LDF aims to investigate the pros and cons of solutions that distribute and balance the load of the query execution between the clients and the server.</p>
+      <p>A preliminary hybrid LDF-based approach <span class="references">[<a href="#ref-5">5</a>]</span> exploited the vast diversity of LDF-interfaces characteristics <span class="references">[<a href="#ref-6">6</a>, <a href="#ref-7">7</a>]</span> that influence the query execution plan of the executed SPARQL query. <a property="schema:citation http://purl.org/spar/cito/cites" href="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf">Another proposal</a> <span class="references">[<a href="#ref-8">8</a>]</span> suggests a server that provide multiple query services that will serve the clients according to the current status of the server workload. However, there is no concrete proposal that regulates the client and server negotiations in order to achieve the highest feasible query execution performance with the current server availability.</p>
 
-      <p class="comment" data-author="RT">While the summary below is valuable, I’m afraid we don’t have the space for it in this poster paper.
-We should definitely mention each one of them, but restrict their explanation to at most 1 (short) sentence each.
-If we can combine them in fewer sentences, that’s even better :-)</p>
-
-      <p>In the following, we provide a brief summary for the approaches that have followed the proposed LDF framework:</p>
-
-      <ul>
-        <li>
-          <p><span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragment (TPF)</a></span> <span class="references">[<a href="#ref-2">2</a>]</span>: TPF is a Web Knowledge Graph interface that allows live SPARQL querying to Open Knowledge Graphs with high availability and scalability. TPF reduces the server load and increases the caching by restricting the server capabilities to only answer single pattern fragments and shifting the query processing to the client-side but with the expenses of a substantial increase in the network traffic and slower query execution performance.</p>
-        </li>
-        <li>
-          <p>Bindings-Restricted Triple Pattern Fragments (brTPF) <span class="references">[<a href="#ref-3">3</a>]</span>: brTPF reduces the incurred network load through attaching triple patterns with bindings from previously evaluated triple patterns. brTPF ensures fewer request to the server plus faster query processing. However brTPF, struggles with high number of concurrent clients, queries with large intermediate results and massive Knowledge Graphs.</p>
-        </li>
-        <li>
-          <p>SaGe <span class="references">[<a href="#ref-4">4</a>]</span>: is designed to provide a starvation-free public SPARQL query service based on a Web Preemption approach. SaGe prevents complex queries from sewing up the server resources by suspending the running query after fixed time quantum with the possibility of resuming the query execution upon the client request. In addition, SaGe defines list of SPARQL operators that are executed on the client-side. Experiments showed that SaGe has improved the average query completion time with the advantage of reducing the network load. On the other hand, SaGe is heavily exhausting the server resources and incurs query performance degradation with increasing number of clients and large-size Knowledge Graphs.</p>
-        </li>
-        <li>
-          <p>smart-KG <span class="references">[<a href="#ref-5">5</a>]</span>: is a new paradigm that introduces incorporating approaches that follow Linked Data Fragment framework in order to resolve server-side load-imbalance in large scale Web Knowledge Graph querying. smart-KG proposes a hybrid-shipping approach through shipping indexed, compressed and queryable graph partitions which are created using <a property="schema:citation http://purl.org/spar/cito/cites" href="http://www.websemanticsjournal.org/index.php/ps/article/view/328">HDT</a> <span class="references">[<a href="#ref-6">6</a>]</span> and based on Family-Based partitioning derived from characteristic sets with intermediate results of single triple patterns using TPF.
-Experiments showed that smart-KG outperforms the currently existing public Knowledge Graph query engines in the case of massive numbers of concurrent clients and billion-size KGs. However, we believe that there is a room for a more balanced client-server distribution in a way that could achieve higher query performance and less network traffic.</p>
-        </li>
-      </ul>
-
-      <p class="comment" data-author="RT">The paragraph below needs more motivation and explanation.
-It should clarify why cost models are needed exactly (what is the problem), and how they solve the problem.</p>
-
-      <p>The main objective of this research is to provide a more intelligent interface that benefits from the variety of capabilities of the currently existing query interfaces through introducing double-side (client/server) cost models. Thus the proposed interface will insure that that the server and the clients resources are well-utilized in order to achieve the highest possible query performance with the current available sever resources.</p>
-
-      <p class="comment" data-author="RT">These client and server negotiations need some more details.
-Why are they needed exactly? (because multiple server interfaces may be available under a certain server load, and the client needs a way to intelligently choose one of them)</p>
-
-      <p>A preliminary client approach <span class="references">[<a href="#ref-7">7</a>]</span> sought to introduce a heuristic method that exploits the characteristics of the different available interfaces. <a property="schema:citation http://purl.org/spar/cito/cites" href="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf">Another proposal</a> <span class="references">[<a href="#ref-8">8</a>]</span> suggests a server that provides multiple query services that will serve the clients according to the current status of the server workload. However, there is no concrete cost-model proposal that regulates the client and server negotiations in order to achieve the highest feasible query execution performance with the current server availability.</p>
-
-      <p class="comment" data-author="RT">We can only implement the client-part of the cost model on Comunica.
-The server-part will have to be implemented as a wrapper on top of existing systems.
-And I actually think Comunica doesn’t need to be mentioned here, so this paragraph can probably be moved to conclusions.
-I suggest to instead mention what we will explain in this paper (the architecture stuff).</p>
-
-      <p>In this paper, we plan to implement our double-side (client/server) cost models on top of <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1007/978-3-030-00668-6_15"><a href="https://comunica.github.io/Article-ISWC2018-Resource/">Comunica</a></span> <span class="references">[<a href="#ref-9">9</a>]</span> which is a flexible query engine platform that is able to query multiple heterogeneous interfaces.
-The modular architecture of Comunica supports internal negotiation between different logic paths using <em>mediators</em>.
-Our proposed client-side cost model will be implemented using such a mediator.</p>
+      <p>In this paper, we propose a smart client that possesses a cost based query optimizer which is aware of alternative RDF interfaces on the server. The purpose of the cost based optimizer is to determine the best (or a very good) access strategy to SPARQL (sub)query based on the current feasible RDF server interfaces. The feasibility of a server interface usage will be decided using a cost model which is aware of the server current load. The double-side (client/server) cost models  will insure that that the server and the clients resources are well-utilized in order to achieve the highest possible query performance with the current available sever resources.</p>
 
     </div>
 </section>
@@ -293,23 +254,21 @@ or within a network of peers.</p>
 <h2 id="references">References</h2>
 <dl class="references">
   <dt id="ref-1">[1]</dt>
-  <dd resource="#linkeddata" typeof="schema:Article">Bizer, C., Heath, T., Berners-Lee, T.: Linked Data - The Story So Far. Int. J. Semantic Web Inf. Syst. 5, 1–22 (2009).</dd>
-  <dt id="ref-2">[2]</dt>
   <dd resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a Low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37–38, 184–206 (2016).</dd>
+  <dt id="ref-2">[2]</dt>
+  <dd resource="#minier2019sage" typeof="schema:Article">Minier, T., Skaf-Molli, H., Molli, P.: SaGe: Web Preemption for Public SPARQL Query Services. The World Wide Web Conference. 1268–1278 (2019).</dd>
   <dt id="ref-3">[3]</dt>
   <dd resource="https://dx.doi.org/10.1007/978-3-319-48472-3_48" typeof="schema:Article">Hartig, O., Buil-Aranda, C.: Bindings-Restricted Triple Pattern Fragments. In: Proc. of ODBASE. pp. 762–779 (2016).</dd>
   <dt id="ref-4">[4]</dt>
-  <dd resource="#minier2019sage" typeof="schema:Article">Minier, T., Skaf-Molli, H., Molli, P.: SaGe: Web Preemption for Public SPARQL Query Services. The World Wide Web Conference. 1268–1278 (2019).</dd>
-  <dt id="ref-5">[5]</dt>
   <dd resource="https://dx.doi.org/10.1145/3366423.338017" typeof="schema:Article">Azzam, A., Fernandez, J., Acosta, M., Beno, M., Polleres, A.: SMART-KG: Hybrid shipping for SPARQL querying on the web. In: Proc. of The Web Conference (2020).</dd>
-  <dt id="ref-6">[6]</dt>
-  <dd resource="http://www.websemanticsjournal.org/index.php/ps/article/view/328" typeof="schema:Article">Fernández, J.D., Martınez-Prieto, M.A., Gutiérrez, C., Polleres, A., Arias, M.: Binary RDF Representation for Publication and Exchange (HDT). J. Web Sem. 19, (2013).</dd>
-  <dt id="ref-7">[7]</dt>
+  <dt id="ref-5">[5]</dt>
   <dd resource="#hetero" typeof="schema:Article">Montoya, G., Aebeloe, C., Hose, K.: Towards Efficient Query Processing over Heterogeneous RDF Interfaces. Presented at the August (2018).</dd>
+  <dt id="ref-6">[6]</dt>
+  <dd resource="#Montoya2019AnalysisOT" typeof="schema:Article">Montoya, G., Keles, I., Hose, K.: Analysis of the Effect of Query Shapes on Performance over LDF Interfaces. In: QuWeDa@ISWC (2019).</dd>
+  <dt id="ref-7">[7]</dt>
+  <dd resource="https://dx.doi.org/10.1007/978-3-030-00668-6_6" typeof="schema:CreativeWork">Heling, L., Acosta, M., Maleshkova, M., Sure-Vetter, Y.: Querying Large Knowledge Graphs over Triple Pattern Fragments: An Empirical Study: 17th International Semantic Web Conference, Monterey, CA, USA, October 8–12, 2018, Proceedings, Part II. Presented at the January (2018).</dd>
   <dt id="ref-8">[8]</dt>
   <dd resource="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf" typeof="schema:Article">Khan, H.: Towards More Intelligent SPARQL Querying Interfaces. In: International Semantic Web Conference (2019).</dd>
-  <dt id="ref-9">[9]</dt>
-  <dd resource="https://dx.doi.org/10.1007/978-3-030-00668-6_15" typeof="schema:Article">Taelman, R., Van Herwegen, J., Vander Sande, M., Verborgh, R.: Comunica: a Modular SPARQL Query Engine for the Web. In: Vrandečić, D., Bontcheva, K., Suárez-Figueroa, M.C., Presutti, V., Celino, I., Sabou, M., Kaffee, L.-A., and Simperl, E. (eds.) Proceedings of the 17th International Semantic Web Conference. pp. 239–255. Springer (2018).</dd>
 </dl>
 </section>
 </footer>
