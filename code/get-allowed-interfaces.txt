@@ -1,11 +1,11 @@
-FUNCTION GetAllowedInterfaces(q, metrics, interfaces, MetricsCurrent, MetricsMax)
-allowedInterfaces = []
-FOREACH interface IN interfaces
-  validInterface = true
-  FOREACH metric IN metrics
+GetInterfaces(q, metrics, interfaces, metricsCurrent, metricsMax)
+  allowedInterfaces = []
+  FOREACH interface IN interfaces
+    validInterface = true
+    FOREACH metric IN metrics
     increase = CalculateMetricIncrease(q, interface)
-    IF MetricsCurrent(metric) + increase > MetricsMax(metric)
-      validInterface = false
-  IF validInterface
-    allowedInterfaces.push(validInterface)
-RETURN allowedInterfaces
+      IF metricsCurrent(metric) + increase > metricsMax(metric)
+        validInterface = false
+    IF validInterface
+      allowedInterfaces.push(validInterface)
+  RETURN allowedInterfaces

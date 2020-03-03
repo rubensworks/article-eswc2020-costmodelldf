@@ -11,7 +11,7 @@
   <meta name="citation_author" content="Amr Azzam" />
   <meta name="citation_author" content="Ruben Taelman" />
   
-  <meta name="citation_publication_date" content="2020/02/27" />
+  <meta name="citation_publication_date" content="2020/03/03" />
 </head>
 
 <body prefix="dctypes: http://purl.org/dc/dcmitype/ pimspace: http://www.w3.org/ns/pim/space# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# lsc: http://linkedscience.org/lsc/ns#" typeof="schema:CreativeWork sioc:Post prov:Entity lsc:Research">
@@ -26,11 +26,11 @@
   <ul id="affiliations">
     <li id="wu"><sup>1</sup>Vienna University of Economics and Business,
           Vienna, Austria,
-          {firstname.lastname}@wu.ac.at</li>
+          aazzam@wu.ac.at</li>
     <li id="idlab"><sup>2</sup>IDLab,
-          Department of Electronics and Information Systems,
+          ELIS,
           Ghent University – imec,
-          {firstname.lastname}@ugent.be</li>
+          ruben.taelman@ugent.be</li>
   </ul>
 
   <section id="abstract" inlist="" rel="schema:hasPart" resource="#abstract">
@@ -60,17 +60,35 @@ Donec quis lectus eget sem tempor tristique pellentesque in dolor.</p>
   <section id="introduction" inlist="" rel="schema:hasPart" resource="#introduction">
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Introduction</h2>
-      <p>Knowledge Graphs (KGs) have become vital assets to provide scalable knowledge models that allow end-users to represent, search and explore facts about entities and discover relationships that are challenging to observe in real life.</p>
+      <p>The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query services.
+However, enabling live queryable Knowledge Graphs on the Web is difficulty due to their <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">low availability</a></span> <span class="references">[<a href="#ref-1">1</a>]</span>
+and expensive hosting of SPARQL endpoints due to their expressive query capabilities.
+As an alternative, by publishing data dumps and requiring clients to query over them client-side,
+this query effort can be pushed to the client, which may not always be desirable either.
+Recently, <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments (LDF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> was introduced as an idea of exploring the range
+of potential Web querying interfaces that exist between SPARQL endpoints and data dumps.
+LDF aims to investigate the trade-offs of this range of solutions that distribute the load of the query execution between client and server.</p>
 
-      <p>The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query service. However, enabling live queryable Knowledge Graphs on the Web is hardly possible due to the well-known <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">low availability</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and expensive hosting of SPARQL endpoints despite their impressive query capabilities. On the other hand, offering offline data dumps does not lead us to the desired reliable Web querying to the public Knowledge Graphs regardless of their low-cost server hosting.</p>
+      <p>Several approaches have emerged following this LDF framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted Triple Pattern Fragments (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-off between the server availability and the query performance. For instance, TPF and brTPF increase server availability at the cost of increased network load. While SaGe enhances average query performance at the cost of reduced server performance when multiple complex queries are running on the server simultaneously. Finally, smart-KG ensures a higher server availability at the cost of higher client effort.</p>
 
-      <p>Alternatively, Linked Data Fragments (LDF) <span class="references">[<a href="#ref-2">2</a>]</span> introduced the foundation of a framework that urges the research the direction of exploring the range of potential Web querying interfaces that come between the two extremist solutions. LDF aims to investigate the pros and cons of solutions that distribute the load of the query execution between the clients and the server.</p>
+      <p>This LDF research has shown that no single optimal approach exists.
+Instead, they each have their advantages and disadvantages.
+Depending on different factors, different optimal approaches may apply.
+As such, there is a need for a hybrid LDF approach that determines one or more optimal query approaches based on different circumstances.</p>
 
-      <p>Several approaches have emerged following LDF framework such as Triple Pattern Fragment variants <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragment (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted Triple Pattern Fragments (brTPF) <span class="references">[<a href="#ref-3">3</a>]</span>, SaGe <span class="references">[<a href="#ref-2">2</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span> which fortunately improved the server scalability and concurrency. Hence there was an inevitable trade-off between the server availability and the query performance. For instance,TPF and brTPF increase the server availability with the cost of high network load. while SaGe enhances the average query performance with the expenses of undesirable server performance when several complex queries are running on the server simultaneously. Finally, smart-KG insures the highest availability of all previously mentioned approaches with the penalty of high client resources usage.</p>
+      <p>A preliminary hybrid LDF approach <span class="references">[<a href="#ref-5">5</a>]</span> investigated the diversity of LDF characteristics <span class="references">[<a href="#ref-6">6</a>, <a href="#ref-7">7</a>]</span>
+that can influence query execution plans.
+<a property="schema:citation http://purl.org/spar/cito/cites" href="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf">Another proposal</a> <span class="references">[<a href="#ref-8">8</a>]</span> suggests a server that provides a different query service based on the current server workload.
+None of these approaches allow query interfaces to be negotiated between client and server
+depending on factors such as the executed query, server effort, and client capabilities.</p>
 
-      <p>A preliminary hybrid LDF-based approach <span class="references">[<a href="#ref-5">5</a>]</span> exploited the vast diversity of LDF-interfaces characteristics <span class="references">[<a href="#ref-6">6</a>, <a href="#ref-7">7</a>]</span> that influence the query execution plan of the executed SPARQL query. <a property="schema:citation http://purl.org/spar/cito/cites" href="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf">Another proposal</a> <span class="references">[<a href="#ref-8">8</a>]</span> suggests a server that provide multiple query services that will serve the clients according to the current status of the server workload. However, there is no concrete proposal that regulates the client and server negotiations in order to achieve the highest feasible query execution performance with the current server availability.</p>
-
-      <p>In this paper, we propose a smart client that possesses a cost based query optimizer which is aware of alternative RDF interfaces on the server. The purpose of the cost based optimizer is to determine the best (or a very good) access strategy to SPARQL (sub)query based on the current feasible RDF server interfaces. The feasibility of a server interface usage will be decided using a cost model which is aware of the server current load. The double-side (client/server) cost models  will insure that that the server and the clients resources are well-utilized in order to achieve the highest possible query performance with the current available sever resources.</p>
+      <p>In this paper, we propose such a negotiation-based cost-model.
+On the one hand, using a server-side cost model,
+the server can expose one or more query interfaces based on its current load,
+and the query that the client aims to execute.
+On the other hand, the client has a cost-based query optimizer that can determine an efficient query plan over the available interfaces.
+This combination of server-side and client-side cost model can ensure efficient usage of server and client resources
+to aim for the best possible query performance over the available LDF approaches.</p>
 
     </div>
 </section>
@@ -78,8 +96,6 @@ Donec quis lectus eget sem tempor tristique pellentesque in dolor.</p>
   <section id="solution" inlist="" rel="schema:hasPart" resource="#solution">
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Hybrid Framework</h2>
-
-      <p class="todo">Shorten</p>
 
       <p>The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
@@ -96,12 +112,12 @@ and a client-side cost model for determining a query execution plan based on the
 where client-side query engines start by sending a query <code>q</code> to the server,
 and receive an answer that contains a token <code>t</code> and a set of allowed interfaces <code>I</code>.
 Based on the returned interfaces,
-the client can determine a query decomposition over these interfaces.
+the client can determine a query plan over these interfaces.
 These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
 Hereafter, we explain the server and client processes in more detail.</p>
 
       <figure id="figure-solution">
-<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em" />
+<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 8em" />
 <figcaption>
           <p><span class="label">Fig. 1:</span> Overview of client-server communication for a cost-model-based query execution over a hybrid of Linked Data Fragments interfaces.</p>
         </figcaption>
@@ -109,27 +125,18 @@ Hereafter, we explain the server and client processes in more detail.</p>
 
       <h3 id="server-component">Server Component</h3>
 
-      <p>The server component of our framework consists of two elements:</p>
-
-      <ol>
-        <li>A cost model for calculating a set of allowed interfaces based on a given query and a set of internal metrics.</li>
-        <li>A token-based wrapper over a set of existing LDF interfaces.</li>
-      </ol>
-
-      <p>We explain these two elements hereafter.</p>
+      <p>The server component of our framework consists of
+a cost model for calculating a set of allow interfaces,
+and a token-based wrapper over a set of interfaces.
+We explain these two elements hereafter.</p>
 
       <h4 id="cost-model">Cost Model</h4>
 
-      <p>The goal of this server-side cost model is two-fold:</p>
-
-      <ol>
-        <li>The availability of the server must be ensured.</li>
-        <li>Queries must be executed as fast as possible.</li>
-      </ol>
-
-      <p>Since the second goal can sometimes be detrimental to the server availability,
+      <p>The goal of this server-side cost model is to ensure the server availability,
+and to allow queries to be executed as fast as possible.
+Since the latter goal can sometimes be detrimental to the server availability,
 for example when many concurrent users are sending highly complex queries,
-the first goal must always have priority in the model.</p>
+the availability goal must always have priority in the model.</p>
 
       <p>Based on these goals, the model should be able to make a suggestion for a set of interfaces
 based on a given query and a set of internal metrics.
@@ -139,40 +146,41 @@ so that the cost model can select interfaces that optimize both goals.</p>
 
       <p><a href="#algorithm-get-allowed-interfaces">Listing 1</a> shows the pseudocode of an algorithm
 that can be used to calculate a set of allowed interfaces.
-For each incoming query <code>q</code>,
+In this algorithm, <code>CalculateMetricIncrease</code> would still need a concrete implementation.
+For this, different possibilities exist,
+such as heuristics to predict query complexity based on the number of triple patterns and query operators.
+<!--For each incoming query `q`,
 the algorithm iterates over all available interfaces, and all metrics.
 For each metric, the expected metric value increase is calculated
-for the given query using <code>CalculateMetricIncrease(q, metric)</code>.
-If when adding this value to the current metric’s value does not exceed the maximum allowed metric value,
+for the given query using `CalculateMetricIncrease(q, metric)`.
+If when adding this value to the current metric's value does not exceed the maximum allowed metric value,
 then the loop continues.
 If all metrics pass for a given interface,
-then an interface is considered an <em>allowed interface</em>.</p>
+then an interface is considered an *allowed interface*.--></p>
 
       <figure id="algorithm-get-allowed-interfaces" class="listing">
-<pre><code>FUNCTION GetAllowedInterfaces(q, metrics, interfaces, MetricsCurrent, MetricsMax)
-</code><code>allowedInterfaces = []
-</code><code>FOREACH interface IN interfaces
-</code><code>  validInterface = true
-</code><code>  FOREACH metric IN metrics
+<pre><code>GetInterfaces(q, metrics, interfaces, metricsCurrent, metricsMax)
+</code><code>  allowedInterfaces = []
+</code><code>  FOREACH interface IN interfaces
+</code><code>    validInterface = true
+</code><code>    FOREACH metric IN metrics
 </code><code>    increase = CalculateMetricIncrease(q, interface)
-</code><code>    IF MetricsCurrent(metric) + increase &gt; MetricsMax(metric)
-</code><code>      validInterface = false
-</code><code>  IF validInterface
-</code><code>    allowedInterfaces.push(validInterface)
-</code><code>RETURN allowedInterfaces</code></pre>
+</code><code>      IF metricsCurrent(metric) + increase &gt; metricsMax(metric)
+</code><code>        validInterface = false
+</code><code>    IF validInterface
+</code><code>      allowedInterfaces.push(validInterface)
+</code><code>  RETURN allowedInterfaces</code></pre>
 <figcaption>
           <p><span class="label">Listing 1:</span> Algorithm for calculating the allowed interfaces for a given query.</p>
         </figcaption>
 </figure>
 
-      <p>Based on our algorithm, the <code>CalculateMetricIncrease</code> still needs a concrete implementation.
+      <!--Based on our algorithm, the `CalculateMetricIncrease` still needs a concrete implementation.
 For this, different possibilities exist.
 For instance, heuristics for query complexity can be used to estimate metric value increases,
 such as query string length, the depth of the basic graph patterns or the used query operators.
 Furthermore, other implementations may be based on query log analysis,
-where models could be based on machine learning techniques.</p>
-
-      <p class="todo">Add citations for query complexity estimations, logs, machine learning</p>
+where models could be based on machine learning techniques.-->
 
       <h4 id="interface-wrapper">Interface Wrapper</h4>
 
@@ -192,17 +200,17 @@ a client could simply ignore the set of allowed interfaces,
 and always execute queries against the most expressive interface (e.g. SPARQL endpoint),
 even if this interface was not allowed by the server.</p>
 
-      <p>Optionally, the server could keep track of token usages
+      <!--Optionally, the server could keep track of token usages
 to check whether or not the client does indeed use it
 to execute the query it got permission for, and nothing more.
 Since keeping track of this token usage could require significant server effort,
 simpler heuristics could be used,
-such as limiting the temporal validity of a token to the estimated execution time.</p>
+such as limiting the temporal validity of a token to the estimated execution time.-->
 
-      <p>An optional enhancement of the server could be to directly
+      <!--An optional enhancement of the server could be to directly
 reply with a SPARQL query response
 if the only allowed server was a SPARQL endpoint,
-because the client will be likely to make such a subsequent request.</p>
+because the client will be likely to make such a subsequent request.-->
 
       <h3 id="client-component">Client Component</h3>
 
@@ -210,27 +218,23 @@ because the client will be likely to make such a subsequent request.</p>
 either in overal execution time,
 or in continuous efficiency.
 There could however be a number of metrics that can soften this need for fast query execution,
-such as reducing CPU or bandwidth usage.</p>
-
-      <p class="todo">Cite Maribel’s diefficiency for continuous efficiency.</p>
+such as reducing CPU or bandwidth usage, or optimizing for early results <span class="references">[<a href="#ref-9">9</a>]</span></p>
 
       <p>Using the server-side hybrid of LDF interfaces that was explained before,
 clients will retrieve a set of allowed interfaces based on a given query.
 Based on these interfaces, the client should determine a query plan that makes use of the interfaces
 in such a way that is as efficient as possible with respect to the client’s metrics.
 While most client-side query algorithms focus on splitting up queries for execution against a single type of interface,
-new algorithms could be designed for this that <em>intelligently combine interfaces</em> for certain subqueries.</p>
+additional algorithms are needed for <em>intelligently combining interfaces</em> for certain subqueries <span class="references">[<a href="#ref-5">5</a>]</span>.</p>
 
-      <p>Next to client metrics, there could be additional parameters that could influence
+      <p>Next to these client metrics, there could be additional parameters that could influence
 the selection of interfaces to query from.
 For example, if the client knows beforehand that it will have to execute <em>many</em> queries against the same dataset,
 then it might be more efficient to download the full dump of the dataset,
 even if a SPARQL endpoint was allowed for the initial query.
 Another case that can influence interface selection
 would be when certain partial dumps of the dataset are already available locally,
-or within a network of peers.</p>
-
-      <p class="todo">Cite P2P querying within browsers</p>
+or within a network of peers <span class="references">[<a href="#ref-10">10</a>]</span>.</p>
 
     </div>
 </section>
@@ -256,9 +260,9 @@ or within a network of peers.</p>
   <dt id="ref-1">[1]</dt>
   <dd resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003" typeof="schema:Article">Verborgh, R., Vander Sande, M., Hartig, O., Van Herwegen, J., De Vocht, L., De Meester, B., Haesendonck, G., Colpaert, P.: Triple Pattern Fragments: a Low-cost Knowledge Graph Interface for the Web. Journal of Web Semantics. 37–38, 184–206 (2016).</dd>
   <dt id="ref-2">[2]</dt>
-  <dd resource="#minier2019sage" typeof="schema:Article">Minier, T., Skaf-Molli, H., Molli, P.: SaGe: Web Preemption for Public SPARQL Query Services. The World Wide Web Conference. 1268–1278 (2019).</dd>
-  <dt id="ref-3">[3]</dt>
   <dd resource="https://dx.doi.org/10.1007/978-3-319-48472-3_48" typeof="schema:Article">Hartig, O., Buil-Aranda, C.: Bindings-Restricted Triple Pattern Fragments. In: Proc. of ODBASE. pp. 762–779 (2016).</dd>
+  <dt id="ref-3">[3]</dt>
+  <dd resource="#minier2019sage" typeof="schema:Article">Minier, T., Skaf-Molli, H., Molli, P.: SaGe: Web Preemption for Public SPARQL Query Services. The World Wide Web Conference. 1268–1278 (2019).</dd>
   <dt id="ref-4">[4]</dt>
   <dd resource="https://dx.doi.org/10.1145/3366423.338017" typeof="schema:Article">Azzam, A., Fernandez, J., Acosta, M., Beno, M., Polleres, A.: SMART-KG: Hybrid shipping for SPARQL querying on the web. In: Proc. of The Web Conference (2020).</dd>
   <dt id="ref-5">[5]</dt>
@@ -269,6 +273,10 @@ or within a network of peers.</p>
   <dd resource="https://dx.doi.org/10.1007/978-3-030-00668-6_6" typeof="schema:CreativeWork">Heling, L., Acosta, M., Maleshkova, M., Sure-Vetter, Y.: Querying Large Knowledge Graphs over Triple Pattern Fragments: An Empirical Study: 17th International Semantic Web Conference, Monterey, CA, USA, October 8–12, 2018, Proceedings, Part II. Presented at the January (2018).</dd>
   <dt id="ref-8">[8]</dt>
   <dd resource="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf" typeof="schema:Article">Khan, H.: Towards More Intelligent SPARQL Querying Interfaces. In: International Semantic Web Conference (2019).</dd>
+  <dt id="ref-9">[9]</dt>
+  <dd resource="#diefficiency" typeof="schema:Article">Acosta, M., Vidal, M.-E., Sure-Vetter, Y.: Diefficiency metrics: measuring the continuous efficiency of query processing approaches. In: International Semantic Web Conference. pp. 3–19. Springer (2017).</dd>
+  <dt id="ref-10">[10]</dt>
+  <dd resource="#webp2p" typeof="schema:Article">Grall, A., Skaf-Molli, H., Molli, P.: SPARQL query execution in networks of web browsers. Presented at the (2018).</dd>
 </dl>
 </section>
 </footer>
