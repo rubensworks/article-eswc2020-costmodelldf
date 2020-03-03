@@ -1,15 +1,31 @@
 ## Introduction
 {:#introduction}
-Knowledge Graphs (KGs) have become vital assets to provide scalable knowledge models that allow end-users to represent, search and explore facts about entities and discover relationships that are challenging to observe in real life.
+The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query services.
+However, enabling live queryable Knowledge Graphs on the Web is difficulty due to their [low availability](cite:cites verborgh_jws_2016)
+and expensive hosting of SPARQL endpoints due to their expressive query capabilities.
+As an alternative, by publishing data dumps and requiring clients to query over them client-side,
+this query effort can be pushed to the client, which may not always be desirable either.
+Recently, [Linked Data Fragments (LDF)](cite:cites verborgh_jws_2016) was introduced as an idea of exploring the range
+of potential Web querying interfaces that exist between SPARQL endpoints and data dumps.
+LDF aims to investigate the trade-offs of this range of solutions that distribute the load of the query execution between client and server.
 
-The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query service. However, enabling live queryable Knowledge Graphs on the Web is hardly possible due to the well-known [low availability](cite:cites verborgh_jws_2016) and expensive hosting of SPARQL endpoints despite their impressive query capabilities. On the other hand, offering offline data dumps does not lead us to the desired reliable Web querying to the public Knowledge Graphs regardless of their low-cost server hosting.
+Several approaches have emerged following this LDF framework such as [Triple Pattern Fragments (TPF)](cite:cites verborgh_jws_2016) and [Bindings-Restricted Triple Pattern Fragments (brTPF)](cite:cites brTPF), [SaGe](cite:cites minier2019sage) and [smart-KG](cite:cites smartKG), each offering their own trade-off between the server availability and the query performance. For instance, TPF and brTPF increase server availability at the cost of increased network load. While SaGe enhances average query performance at the cost of reduced server performance when multiple complex queries are running on the server simultaneously. Finally, smart-KG ensures a higher server availability at the cost of higher client effort.
 
-Alternatively, [Linked Data Fragments (LDF)](cite:cites minier2019sage) introduced the foundation of a framework that urges the research the direction of exploring the range of potential Web querying interfaces that come between the two extremist solutions. LDF aims to investigate the pros and cons of solutions that distribute the load of the query execution between the clients and the server. 
+This LDF research has shown that no single optimal approach exists.
+Instead, they each have their advantages and disadvantages.
+Depending on different factors, different optimal approaches may apply.
+As such, there is a need for a hybrid LDF approach that determines one or more optimal query approaches based on different circumstances.
 
-Several approaches have emerged following LDF framework such as Triple Pattern Fragment variants [Triple Pattern Fragment (TPF)](cite:cites verborgh_jws_2016) and [Bindings-Restricted Triple Pattern Fragments (brTPF)](cite:cites brTPF), [SaGe](cite:cites minier2019sage) and [smart-KG](cite:cites smartKG) which fortunately improved the server scalability and concurrency. Hence there was an inevitable trade-off between the server availability and the query performance. For instance,TPF and brTPF increase the server availability with the cost of high network load. while SaGe enhances the average query performance with the expenses of undesirable server performance when several complex queries are running on the server simultaneously. Finally, smart-KG insures the highest availability of all previously mentioned approaches with the penalty of high client resources usage.
+A [preliminary hybrid LDF approach](cite:cites hetero) investigated the diversity of [LDF characteristics](cite:cites Montoya2019AnalysisOT,inbook)
+that can influence query execution plans.
+[Another proposal](cite:cites khanISWC2019) suggests a server that provides a different query service based on the current server workload.
+None of these approaches allow query interfaces to be negotiated between client and server
+depending on factors such as the executed query, server effort, and client capabilities.
 
-
-A [preliminary hybrid LDF-based approach](cite:cites hetero) exploited the vast diversity of [LDF-interfaces characteristics](cite:cites Montoya2019AnalysisOT,inbook) that influence the query execution plan of the executed SPARQL query. [Another proposal](cite:cites khanISWC2019) suggests a server that provide multiple query services that will serve the clients according to the current status of the server workload. However, there is no concrete proposal that regulates the client and server negotiations in order to achieve the highest feasible query execution performance with the current server availability.
-
-In this paper, we propose a smart client that possesses a cost based query optimizer which is aware of alternative RDF interfaces on the server. The purpose of the cost based optimizer is to determine the best (or a very good) access strategy to SPARQL (sub)query based on the current feasible RDF server interfaces. The feasibility of a server interface usage will be decided using a cost model which is aware of the server current load. The double-side (client/server) cost models  will insure that that the server and the clients resources are well-utilized in order to achieve the highest possible query performance with the current available sever resources. 
-
+In this paper, we propose such a negotiation-based cost-model.
+On the one hand, using a server-side cost model,
+the server can expose one or more query interfaces based on its current load,
+and the query that the client aims to execute.
+On the other hand, the client has a cost-based query optimizer that can determine an efficient query plan over the available interfaces.
+This combination of server-side and client-side cost model can ensure efficient usage of server and client resources
+to aim for the best possible query performance over the available LDF approaches.
