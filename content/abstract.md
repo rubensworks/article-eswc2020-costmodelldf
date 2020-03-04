@@ -1,15 +1,2 @@
 ## Abstract
-<!-- Context      -->
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-<!-- Need         -->
-Vestibulum finibus dignissim augue, id pellentesque est facilisis non.
-<!-- Task         -->
-Donec fringilla dolor non neque iaculis blandit.
-<!-- Object       -->
-Praesent aliquet eleifend iaculis.
-<!-- Findings     -->
-Quisque pellentesque at odio ac bibendum.
-<!-- Conclusion   -->
-Pellentesque imperdiet felis urna, quis facilisis lacus gravida non.
-<!-- Perspectives -->
-Donec quis lectus eget sem tempor tristique pellentesque in dolor.
+The growing number of decentralized Knowledge Graphs over the Web has created an essential need to provide online querying interfaces to evaluate SPARQL queries over the RDF KGs. For enabling live Knowledge graph querying, it is quite common to adopt SPARQL endpoints that suffer from an availability problem. To alleviate the limited availability, several existing approaches followed the Linked Data Fragment framework which distributes the query evaluation between the client and the server. However, the extensive experiments showed that the current approaches have diverse characteristics that could be incorporated to enhance query performance and server availability. In this paper, we propose a double-sided cost model, on the server-side, the cost model decides the set of interfaces that can be exposed based on the current server load. While the client-side cost aims to find an efficient query execution plan based on the available LDF approaches. 
