@@ -1,2 +1,22 @@
 ## Abstract
-The growing number of decentralized Knowledge Graphs over the Web has created an essential need to provide online querying interfaces to evaluate SPARQL queries over the RDF KGs. For enabling live Knowledge graph querying, it is quite common to adopt SPARQL endpoints that suffer from an availability problem. To alleviate the limited availability, several existing approaches followed the Linked Data Fragment framework which distributes the query evaluation between the client and the server. However, the extensive experiments showed that the current approaches have diverse characteristics that could be incorporated to enhance query performance and server availability. In this paper, we propose a double-sided cost model, on the server-side, the cost model decides the set of interfaces that can be exposed based on the current server load. While the client-side cost aims to find an efficient query execution plan based on the available LDF approaches. 
+<!-- Context      -->
+A multitude of Linked Data Fragments (LDF) server interfaces have been proposed to expose Knowledge Graphs (KGs) on the Web,
+so that clients can query over them.
+However, there is no single _silver bullet_ that works best everywhere.
+Each of these interfaces have diverse characteristics that make them more performant in certain cases compared to other interfaces,
+<!-- Need         -->
+Currently, publishers can only pick one of these interfaces to expose their KGs on the Web.
+However, in some cases, multiple interfaces may be suitable for the publisher,
+and these may even vary over time based on factors such as server load.
+<!-- Task         -->
+As such, we propose a hybrid LDF interface that can expose multiple interfaces based on a server-side cost model.
+Additionally, we sketch a negotiation protocol through which clients can determine desirable interfaces
+during query planning using a client-side cost model.
+<!-- Object       -->
+In this paper, we lay out the high-level ideas behind this hybrid framework,
+and we explain our future steps regarding implementation and evaluation.
+<!-- Findings     -->
+<!-- Conclusion   -->
+<!-- Perspectives -->
+As such, our work provides a basis for exploiting the trade-offs that exist
+between different LDF interfaces for optimally exposing KGs on the Web.
