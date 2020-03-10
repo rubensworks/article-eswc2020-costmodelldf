@@ -1,6 +1,6 @@
 ## Conclusions
 
-In future work, we intend to implement and evaluate our proposed framework.
+While this poster mainly outlines the idea, we intend to implement and evaluate our proposed framework.
 On the one hand, we will implement the server component that wraps over any number of LDF interfaces,
 and exposes them based on a server-side cost model.
 On the other hand, we will implement the client component that can communicate with different interfaces,

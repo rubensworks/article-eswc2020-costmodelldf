@@ -1,13 +1,20 @@
 ## Hybrid Framework
 {:#solution}
-
+{:.todo Tokens should be assembled with an expiry date}
+{:.todo Enlarge the figure, add parenthesis}
+{:.todo What do you mean by query complexity? predict execution time?}
+{:.todo Should we define a function for the cost model (Mathmatical formulation)?}
+{:.todo What type of cost model?threshold-based?then we need a policy (selection function based on these values)?}
+{:.todo For the algorithm, should we use getThreshould and getValue(metric)? better Naming?}
+{:.todo define continous effciency?}
+{:.todo Notneeded sentence "even if a SPARQL endpoint was allowed ...." }
 The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
 based on the current server load and the used SPARQL queries.
 Instead of making the server allow *just one interface* type per query,
 we propose allowing a *collection of interfaces* to be exposed per query.
-This allows the client to select the most desired interface
-based on the clients capabilities and circumstances.
+This allows the client to select the most desirable interface
+based on the clients capabilities, query plans, and other circumstances.
 
 To achieve such a hybrid of server interfaces,
 we make use of a server-side cost model for selecting a set of interfaces based on a given query,
@@ -18,7 +25,7 @@ and receive an answer that contains a token `t` and a set of allowed interfaces 
 Based on the returned interfaces,
 the client can determine a query plan over these interfaces.
 These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
-Hereafter, we explain the server and client processes in more detail.
+Hereafter, we explain the server and client in more detail.
 
 <figure id="figure-solution">
 <img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 8em">
@@ -45,7 +52,7 @@ the availability goal must always have priority in the model.
 Based on these goals, the model should be able to make a suggestion for a set of interfaces
 based on a given query and a set of internal metrics.
 For this, we propose a set of internal metrics such as the current CPU usage, memory usage and network I/O.
-The server administrator must be able to configure an upper limit for these metrics,
+The server administrator must be able to configure a threshold for these metrics,
 so that the cost model can select interfaces that optimize both goals.
 
 [](#algorithm-get-allowed-interfaces) shows the pseudocode of an algorithm
