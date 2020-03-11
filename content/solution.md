@@ -1,13 +1,6 @@
 ## Hybrid Framework
 {:#solution}
-{:.todo Tokens should be assembled with an expiry date}
-{:.todo Enlarge the figure, add parenthesis}
-{:.todo What do you mean by query complexity? predict execution time?}
-{:.todo Should we define a function for the cost model (Mathmatical formulation)?}
-{:.todo What type of cost model?threshold-based?then we need a policy (selection function based on these values)?}
-{:.todo For the algorithm, should we use getThreshould and getValue(metric)? better Naming?}
-{:.todo define continous effciency?}
-{:.todo Notneeded sentence "even if a SPARQL endpoint was allowed ...." }
+
 The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
 based on the current server load and the used SPARQL queries.
@@ -28,7 +21,7 @@ These (sub)queries can then be resolved by requesting the appropriate interfaces
 Hereafter, we explain the server and client in more detail.
 
 <figure id="figure-solution">
-<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 8em">
+<img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em">
 <figcaption markdown="block">
 Overview of client-server communication for a cost-model-based query execution over a hybrid of Linked Data Fragments interfaces.
 </figcaption>
@@ -57,9 +50,10 @@ so that the cost model can select interfaces that optimize both goals.
 
 [](#algorithm-get-allowed-interfaces) shows the pseudocode of an algorithm
 that can be used to calculate a set of allowed interfaces.
-In this algorithm, `CalculateMetricIncrease` would still need a concrete implementation.
+In this algorithm, `GetValueIncrease` would still need a concrete implementation.
 For this, different possibilities exist,
-such as heuristics to predict query complexity based on the number of triple patterns and query operators.
+such as heuristics to predict query execution effort based on the number of triple patterns and query operators.
+Different configuration policies may lead to different implementations of this function.
 <!--For each incoming query `q`,
 the algorithm iterates over all available interfaces, and all metrics.
 For each metric, the expected metric value increase is calculated
@@ -95,6 +89,7 @@ The token is *required* for performing any requests to any of the wrapped LDF in
 
 This token should be seen as temporary *permission*
 to make use of a specific set of query capabilities from the data publisher.
+As such, it has an expiration time.
 It is important that the server validates this token upon every request to an LDF interface.
 If the server would not do this,
 a client could simply ignore the set of allowed interfaces,
@@ -115,9 +110,7 @@ because the client will be likely to make such a subsequent request.-->
 
 ### Client Component
 
-In most cases, the primary goal of clients is to execute queries as fast as possible,
-either in overal execution time,
-or in continuous efficiency.
+In most cases, the primary goal of clients is to execute queries as fast as possible.
 There could however be a number of metrics that can soften this need for fast query execution,
 such as reducing CPU or bandwidth usage, or [optimizing for early results](cite:cites diefficiency)
 
@@ -131,8 +124,7 @@ additional algorithms are needed for [*intelligently combining interfaces* for c
 Next to these client metrics, there could be additional parameters that could influence
 the selection of interfaces to query from.
 For example, if the client knows beforehand that it will have to execute *many* queries against the same dataset,
-then it might be more efficient to download the full dump of the dataset,
-even if a SPARQL endpoint was allowed for the initial query.
+then it might be more efficient to download the full dump of the dataset.
 Another case that can influence interface selection
 would be when certain partial dumps of the dataset are already available locally,
 or [within a network of peers](cite:cites webp2p).
