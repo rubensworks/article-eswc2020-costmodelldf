@@ -11,7 +11,7 @@
   <meta name="citation_author" content="Amr Azzam" />
   <meta name="citation_author" content="Ruben Taelman" />
   
-  <meta name="citation_publication_date" content="2020/03/05" />
+  <meta name="citation_publication_date" content="2020/03/11" />
 </head>
 
 <body prefix="dctypes: http://purl.org/dc/dcmitype/ pimspace: http://www.w3.org/ns/pim/space# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# lsc: http://linkedscience.org/lsc/ns#" typeof="schema:CreativeWork sioc:Post prov:Entity lsc:Research">
@@ -37,14 +37,12 @@
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Abstract</h2>
       <!-- Context      -->
-      <p>A multitude of Linked Data Fragments (LDF) server interfaces have been proposed to expose Knowledge Graphs (KGs) on the Web,
-so that clients can query over them.
-However, there is no single <em>silver bullet</em> that works best everywhere.
-Each of these interfaces have diverse characteristics that make them more performant in certain cases compared to other interfaces,
+      <p>A multitude of Linked Data Fragments (LDF) server interfaces have been proposed to expose Knowledge Graphs (KGs) on the Web with differences mainly in terms of how much of the query workload processing is delegated to the client. However, there is no single <em>silver bullet</em> that works best everywhere.
+Each of these interfaces has diverse characteristics that make them more or less performant dependent on server load, client resources capabilities, network bandwidth, and querying,
 <!-- Need         -->
 Currently, publishers can only pick one of these interfaces to expose their KGs on the Web.
 However, in some cases, multiple interfaces may be suitable for the publisher,
-and these may even vary over time based on factors such as server load.
+and these may even vary over time based on the aforementioned factors.
 <!-- Task         -->
 As such, we propose a hybrid LDF interface that can expose multiple interfaces based on a server-side cost model.
 Additionally, we sketch a negotiation protocol through which clients can determine desirable interfaces
@@ -55,8 +53,7 @@ and we explain our future steps regarding implementation and evaluation.
 <!-- Findings     -->
 <!-- Conclusion   -->
 <!-- Perspectives -->
-As such, our work provides a basis for exploiting the trade-offs that exist
-between different LDF interfaces for optimally exposing KGs on the Web.</p>
+As such, our work provides a basis for exploiting the trade-offs that exist between different LDF interfaces for optimally exposing KGs on the Web.</p>
 
     </div>
 </section>
@@ -68,26 +65,24 @@ between different LDF interfaces for optimally exposing KGs on the Web.</p>
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Introduction</h2>
       <p>The rapid growth of open and decentralized Knowledge Graphs over the Web has created an immense demand for public Knowledge Graph query services.
-However, enabling live queryable Knowledge Graphs on the Web is difficulty due to their <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">low availability</a></span> <span class="references">[<a href="#ref-1">1</a>]</span>
+However, serving live queryable Knowledge Graphs on the Web is difficult due to their <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">low availability</a></span> <span class="references">[<a href="#ref-1">1</a>]</span>
 and expensive hosting of SPARQL endpoints due to their expressive query capabilities.
-As an alternative, by publishing data dumps and requiring clients to query over them client-side,
-this query effort can be pushed to the client, which may not always be desirable either.
-Recently, <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments (LDF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> was introduced as an idea of exploring the range
+As an alternative, by publishing data dumps and requiring clients to query over them client-side, this query effort can be fully pushed to the client, which may not always be desirable either.
+Recently, <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments framework (LDF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> was introduced as an idea of exploring range
 of potential Web querying interfaces that exist between SPARQL endpoints and data dumps.
-LDF aims to investigate the trade-offs of this range of solutions that distribute the load of the query execution between client and server.</p>
+LDF aims at investigating the trade-offs of the range of solutions that distribute the load of query execution between client and server.</p>
 
-      <p>Several approaches have emerged following this LDF framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted Triple Pattern Fragments (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-off between the server availability and the query performance. For instance, TPF and brTPF increase server availability at the cost of increased network load. While SaGe enhances average query performance at the cost of reduced server performance when multiple complex queries are running on the server simultaneously. Finally, smart-KG ensures a higher server availability at the cost of higher client effort.</p>
+      <p>Several approaches have emerged following this LDF framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted TPF (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-off between the server availability and the query performance. For instance, TPF and brTPF increase server availability at the cost of increased network load. While SaGe enhances average query performance at the cost of reduced server performance when multiple complex queries are running on the server simultaneously. Finally, smart-KG ensures a higher server availability at the cost of higher client effort.</p>
 
-      <p>This LDF research has shown that no single optimal approach exists.
-Instead, they each have their advantages and disadvantages.
-Depending on different factors, different optimal approaches may apply.
-As such, there is a need for a hybrid LDF approach that determines one or more optimal query approaches based on different circumstances.</p>
+      <p>The research sparked by LDF has shown that no single optimal approach exists.
+Instead, they all have their advantages and disadvantages on a varying spectrum.
+As such, there is a need for a hybrid LDF approach that determines one or more optimal query approaches based on dynamically changing.</p>
 
       <p>A preliminary hybrid LDF approach <span class="references">[<a href="#ref-5">5</a>]</span> investigated the diversity of LDF characteristics <span class="references">[<a href="#ref-6">6</a>, <a href="#ref-7">7</a>]</span>
 that can influence query execution plans.
 <a property="schema:citation http://purl.org/spar/cito/cites" href="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf">Another proposal</a> <span class="references">[<a href="#ref-8">8</a>]</span> suggests a server that provides a different query service based on the current server workload.
 None of these approaches allow query interfaces to be negotiated between client and server
-depending on factors such as the executed query, server effort, and client capabilities.</p>
+depending on factors such as the executed query, server effort, client capabilities, and network bandwidth in combination.</p>
 
       <p>In this paper, we propose such a negotiation-based cost-model.
 On the one hand, using a server-side cost model,
@@ -102,15 +97,14 @@ to aim for the best possible query performance over the available LDF approaches
 
   <section id="solution" inlist="" rel="schema:hasPart" resource="#solution">
 <div datatype="rdf:HTML" property="schema:description">
-      <h2 property="schema:name">Hybrid Framework</h2>
-
+      <h2 property="schema:name" class="todo todo todo todo todo todo todo todo">Hybrid Framework</h2>
       <p>The goal of our proposed framework
 is to allow servers to expose different kinds of interfaces
 based on the current server load and the used SPARQL queries.
 Instead of making the server allow <em>just one interface</em> type per query,
 we propose allowing a <em>collection of interfaces</em> to be exposed per query.
-This allows the client to select the most desired interface
-based on the clients capabilities and circumstances.</p>
+This allows the client to select the most desirable interface
+based on the clients capabilities, query plans, and other circumstances.</p>
 
       <p>To achieve such a hybrid of server interfaces,
 we make use of a server-side cost model for selecting a set of interfaces based on a given query,
@@ -121,7 +115,7 @@ and receive an answer that contains a token <code>t</code> and a set of allowed 
 Based on the returned interfaces,
 the client can determine a query plan over these interfaces.
 These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
-Hereafter, we explain the server and client processes in more detail.</p>
+Hereafter, we explain the server and client in more detail.</p>
 
       <figure id="figure-solution">
 <img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 8em" />
@@ -148,7 +142,7 @@ the availability goal must always have priority in the model.</p>
       <p>Based on these goals, the model should be able to make a suggestion for a set of interfaces
 based on a given query and a set of internal metrics.
 For this, we propose a set of internal metrics such as the current CPU usage, memory usage and network I/O.
-The server administrator must be able to configure an upper limit for these metrics,
+The server administrator must be able to configure a threshold for these metrics,
 so that the cost model can select interfaces that optimize both goals.</p>
 
       <p><a href="#algorithm-get-allowed-interfaces">Listing 1</a> shows the pseudocode of an algorithm
@@ -250,7 +244,7 @@ or within a network of peers <span class="references">[<a href="#ref-10">10</a>
 <div datatype="rdf:HTML" property="schema:description">
       <h2 property="schema:name">Conclusions</h2>
 
-      <p>In future work, we intend to implement and evaluate our proposed framework.
+      <p>While this poster mainly outlines the idea, we intend to implement and evaluate our proposed framework.
 On the one hand, we will implement the server component that wraps over any number of LDF interfaces,
 and exposes them based on a server-side cost model.
 On the other hand, we will implement the client component that can communicate with different interfaces,
@@ -284,7 +278,7 @@ which may potentially change at runtime, for which a cost model is essential.</p
   <dt id="ref-4">[4]</dt>
   <dd resource="https://dx.doi.org/10.1145/3366423.338017" typeof="schema:Article">Azzam, A., Fernandez, J., Acosta, M., Beno, M., Polleres, A.: SMART-KG: Hybrid shipping for SPARQL querying on the web. In: Proc. of The Web Conference (2020).</dd>
   <dt id="ref-5">[5]</dt>
-  <dd resource="#hetero" typeof="schema:Article">Montoya, G., Aebeloe, C., Hose, K.: Towards Efficient Query Processing over Heterogeneous RDF Interfaces. Presented at the August (2018).</dd>
+  <dd resource="#hetero" typeof="schema:Article">Montoya, G., Aebeloe, C., Hose, K.: Towards Efficient Query Processing over Heterogeneous RDF Interfaces. In: DeSemWeb@ISWC (2018).</dd>
   <dt id="ref-6">[6]</dt>
   <dd resource="#Montoya2019AnalysisOT" typeof="schema:Article">Montoya, G., Keles, I., Hose, K.: Analysis of the Effect of Query Shapes on Performance over LDF Interfaces. In: QuWeDa@ISWC (2019).</dd>
   <dt id="ref-7">[7]</dt>
@@ -292,9 +286,9 @@ which may potentially change at runtime, for which a cost model is essential.</p
   <dt id="ref-8">[8]</dt>
   <dd resource="https://papers.dice-research.org/2019/ISWC_PhdConsortium_Hashim/ISWC_PhDConsortium_hashim-public.pdf" typeof="schema:Article">Khan, H.: Towards More Intelligent SPARQL Querying Interfaces. In: International Semantic Web Conference (2019).</dd>
   <dt id="ref-9">[9]</dt>
-  <dd resource="#diefficiency" typeof="schema:Article">Acosta, M., Vidal, M.-E., Sure-Vetter, Y.: Diefficiency metrics: measuring the continuous efficiency of query processing approaches. In: International Semantic Web Conference. pp. 3–19. Springer (2017).</dd>
+  <dd resource="#diefficiency" typeof="schema:Article">Acosta, M., Vidal, M.-E., Sure-Vetter, Y.: Diefficiency metrics: measuring the continuous efficiency of query processing approaches. In: International Semantic Web Conference. Springer (2017).</dd>
   <dt id="ref-10">[10]</dt>
-  <dd resource="#webp2p" typeof="schema:Article">Grall, A., Skaf-Molli, H., Molli, P.: SPARQL query execution in networks of web browsers. Presented at the (2018).</dd>
+  <dd resource="#webp2p" typeof="schema:Article">Grall, A., Skaf-Molli, H., Molli, P.: SPARQL Query Execution in Networks of Web Browsers. Presented at the October (2018).</dd>
   <dt id="ref-11">[11]</dt>
   <dd resource="https://dx.doi.org/10.1007/978-3-030-00668-6_15" typeof="schema:Article">Taelman, R., Van Herwegen, J., Vander Sande, M., Verborgh, R.: Comunica: a Modular SPARQL Query Engine for the Web. In: Proceedings of the 17th International Semantic Web Conference. pp. 239–255 (2018).</dd>
 </dl>
