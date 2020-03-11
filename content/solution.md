@@ -1,24 +1,13 @@
 ## Hybrid Framework
 {:#solution}
 
-The goal of our proposed framework
-is to allow servers to expose different kinds of interfaces
-based on the current server load and the used SPARQL queries.
-Instead of making the server allow *just one interface* type per query,
-we propose allowing a *collection of interfaces* to be exposed per query.
-This allows the client to select the most desirable interface
-based on the clients capabilities, query plans, and other circumstances.
-
-To achieve such a hybrid of server interfaces,
-we make use of a server-side cost model for selecting a set of interfaces based on a given query,
-and a client-side cost model for determining a query execution plan based on the allowed interfaces.
-[](#figure-solution) shows an overview of this framework
-where client-side query engines start by sending a query `q` to the server,
-and receive an answer that contains a token `t` and a set of allowed interfaces `I`.
-Based on the returned interfaces,
-the client can determine a query plan over these interfaces.
-These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
-Hereafter, we explain the server and client in more detail.
+The goal of our framework
+is to expose different kinds of server interfaces
+based on the server load and the queries.
+Instead of exposing *just one interface* per query,
+we expose a *collection of interfaces* per query.
+This allows clients to select a combination of interfaces
+based on its capabilities, query plans, and other circumstances.
 
 <figure id="figure-solution">
 <img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em">
@@ -27,12 +16,21 @@ Overview of client-server communication for a cost-model-based query execution o
 </figcaption>
 </figure>
 
+To achieve such a server interface hybrid,
+a server cost model selects a set of interfaces based on a given query,
+and a client cost model determines a query plan based on these interfaces.
+[](#figure-solution) shows an overview of this framework
+where client-side query engines start by sending a query `q` to the server,
+and receive an answer that contains a token `t` and a set of allowed interfaces `I`.
+Based on the returned interfaces,
+the client can determine a query plan over these interfaces.
+These (sub)queries can then be resolved by requesting the appropriate interfaces using the given token.
+
 ### Server Component
 
 The server component of our framework consists of
 a cost model for calculating a set of allow interfaces,
 and a token-based wrapper over a set of interfaces.
-We explain these two elements hereafter.
 
 #### Cost Model
 
@@ -40,7 +38,7 @@ The goal of this server-side cost model is to ensure the server availability,
 and to allow queries to be executed as fast as possible.
 Since the latter goal can sometimes be detrimental to the server availability,
 for example when many concurrent users are sending highly complex queries,
-the availability goal must always have priority in the model.
+availability must always have priority.
 
 Based on these goals, the model should be able to make a suggestion for a set of interfaces
 based on a given query and a set of internal metrics.
@@ -53,7 +51,6 @@ that can be used to calculate a set of allowed interfaces.
 In this algorithm, `GetValueIncrease` would still need a concrete implementation.
 For this, different possibilities exist,
 such as heuristics to predict query execution effort based on the number of triple patterns and query operators.
-Different configuration policies may lead to different implementations of this function.
 <!--For each incoming query `q`,
 the algorithm iterates over all available interfaces, and all metrics.
 For each metric, the expected metric value increase is calculated
@@ -110,21 +107,18 @@ because the client will be likely to make such a subsequent request.-->
 
 ### Client Component
 
-In most cases, the primary goal of clients is to execute queries as fast as possible.
+Usually, the goal of clients is to execute queries as fast as possible.
 There could however be a number of metrics that can soften this need for fast query execution,
 such as reducing CPU or bandwidth usage, or [optimizing for early results](cite:cites diefficiency)
 
-Using the server-side hybrid of LDF interfaces that was explained before,
+Using our server-side hybrid of LDF interfaces,
 clients will retrieve a set of allowed interfaces based on a given query.
-Based on these interfaces, the client should determine a query plan that makes use of the interfaces
-in such a way that is as efficient as possible with respect to the client's metrics.
+Based on this, the client should determine an efficient query plan
+using the interface capabilities with respect to the client's metrics.
 While most client-side query algorithms focus on splitting up queries for execution against a single type of interface,
 additional algorithms are needed for [*intelligently combining interfaces* for certain subqueries](cite:cites hetero).
 
-Next to these client metrics, there could be additional parameters that could influence
-the selection of interfaces to query from.
-For example, if the client knows beforehand that it will have to execute *many* queries against the same dataset,
-then it might be more efficient to download the full dump of the dataset.
-Another case that can influence interface selection
-would be when certain partial dumps of the dataset are already available locally,
-or [within a network of peers](cite:cites webp2p).
+Next to these main metrics, others may also influence selection,
+<!--For example, if the client will execute *many* queries against the same dataset,
+then it can become more efficient to download the full dataset dump.-->
+such as the availability of dataset fragments, locally or [within a network of peers](cite:cites webp2p).

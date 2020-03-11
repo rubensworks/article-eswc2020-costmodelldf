@@ -1,11 +1,8 @@
 ## Conclusions
 
-While this poster mainly outlines the idea, we intend to implement and evaluate our proposed framework.
-On the one hand, we will implement the server component that wraps over any number of LDF interfaces,
-and exposes them based on a server-side cost model.
-On the other hand, we will implement the client component that can communicate with different interfaces,
-and can select any of them during query planning using a client-side cost model.
-For both components, we will design and evaluate different cost models.
+This article outlines our high-level framework.
+In future work, we will implement the server and client components,
+and evaluate different cost models.
 
 We intend to implement our client component using the [Comunica platform](cite:cites taelman_iswc_2018) as a _Mediator_
 that can determine optimal interfaces based on different circumstances.
