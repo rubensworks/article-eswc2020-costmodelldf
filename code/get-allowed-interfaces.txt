@@ -1,10 +1,10 @@
-GetInterfaces(q, metrics, interfaces, metricsCurrent, metricsMax)
+GetInterfaces(q, metrics, interfaces, GetValue, GetThreshold)
   allowedInterfaces = []
   FOREACH interface IN interfaces
     validInterface = true
     FOREACH metric IN metrics
-    increase = CalculateMetricIncrease(q, interface)
-      IF metricsCurrent(metric) + increase > metricsMax(metric)
+      increase = GetValueIncrease(metric, q, interface)
+      IF GetValue(metric) + increase > GetThreshold(metric)
         validInterface = false
     IF validInterface
       allowedInterfaces.push(validInterface)
