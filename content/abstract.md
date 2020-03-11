@@ -1,7 +1,11 @@
 ## Abstract
 <!-- Context      -->
-A multitude of Linked Data Fragments (LDF) server interfaces have been proposed to expose Knowledge Graphs (KGs) on the Web with differences mainly in terms of how much of the query workload processing is delegated to the client. However, there is no single _silver bullet_ that works best everywhere.
-Each of these interfaces has diverse characteristics that make them more or less performant dependent on server load, client resources capabilities, network bandwidth, and querying,
+A multitude of Linked Data Fragments (LDF) server interfaces have been proposed to expose Knowledge Graphs (KGs) on the Web.
+Each of them lead to different trade-offs when clients execute queries over them,
+such as how query execution effort is distributed between server and client.
+There is however no single _silver bullet_ that works best everywhere.
+Each of these interfaces have diverse characteristics that very performance in terms of
+server effort, client effort, and network bandwidth.
 <!-- Need         -->
 Currently, publishers can only pick one of these interfaces to expose their KGs on the Web.
 However, in some cases, multiple interfaces may be suitable for the publisher,
@@ -16,4 +20,5 @@ and we explain our future steps regarding implementation and evaluation.
 <!-- Findings     -->
 <!-- Conclusion   -->
 <!-- Perspectives -->
-As such, our work provides a basis for exploiting the trade-offs that exist between different LDF interfaces for optimally exposing KGs on the Web.
+As such, our work provides a basis for exploiting the trade-offs that exist
+between different LDF interfaces for optimally exposing KGs on the Web.
