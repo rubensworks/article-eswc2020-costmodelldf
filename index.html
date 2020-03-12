@@ -19,20 +19,23 @@
   <header>
   <h1 id="towards-cost-model-based-query-executionbr-over-hybrid-linked-data-fragments-interfaces">Towards Cost-model-based Query Execution<br />over Hybrid Linked Data Fragments Interfaces</h1>
 
-  <ul id="authors">
+  <ul id="affiliations">
     <li><a rev="lsc:participatesIn" property="foaf:maker schema:creator schema:author schema:publisher" href="#" typeof="foaf:Person schema:Person" resource="#">Amr Azzam</a><a href="#wu1"><sup>1</sup></a></li>
     <li><a rev="lsc:participatesIn" property="foaf:maker schema:creator schema:author schema:publisher" href="http://www.rubensworks.net/" typeof="foaf:Person schema:Person" resource="http://www.rubensworks.net/#me">Ruben Taelman</a><a href="#idlab"><sup>2</sup></a></li>
-    <li><a rev="lsc:participatesIn" property="foaf:maker schema:creator schema:author schema:publisher" href="https://aic.ai.wu.ac.at/~polleres/" typeof="foaf:Person schema:Person" resource="http://polleres.net/foaf.rdf#me">Axel Polleres</a><a href="#wu"><sup>1</sup></a></li>
+    <li><a rev="lsc:participatesIn" property="foaf:maker schema:creator schema:author schema:publisher" href="https://aic.ai.wu.ac.at/~polleres/" typeof="foaf:Person schema:Person" resource="http://polleres.net/foaf.rdf#me">Axel Polleres</a><a href="#wu2"><sup>1</sup></a>
+.erb</li>
   </ul>
-
-  <ul id="affiliations">
-    <li id="wu"><sup>1</sup>Vienna University of Economics and Business,
+  <ul>
+    <li id="wu1"><sup>1</sup>Vienna University of Economics and Business,
           Vienna, Austria,
-          aazzam@wu.ac.at</li>
+          amr.azzam@wu.ac.at</li>
     <li id="idlab"><sup>2</sup>IDLab,
           ELIS,
           Ghent University – imec,
           ruben.taelman@ugent.be</li>
+    <li id="wu2"><sup>1</sup>Vienna University of Economics and Business,
+          Vienna, Austria,
+          axel.polleres@wu.ac.at</li>
   </ul>
 
   <section id="abstract" inlist="" rel="schema:hasPart" resource="#abstract">
@@ -79,7 +82,7 @@ Recently, the <span property="schema:citation http://purl.org/spar/cito/cites" r
 to explore the range of Web query interfaces that exist between SPARQL endpoints and data dumps,
 and measure trade-offs such as the distribution of query execution load between clients and servers.</p>
 
-      <p>Several approaches have emerged following this framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted TPF (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. Smart-KG increases server availability at the cost of higher client effort.</p>
+      <p>Several approaches have emerged following this framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted TPF (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. smart-KG increases server availability at the cost of higher client effort.</p>
 
       <p>Research shows that no single optimal approach exists,
 but they all have their advantages and disadvantages.
