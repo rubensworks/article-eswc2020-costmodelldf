@@ -9,7 +9,7 @@ Recently, the [Linked Data Fragments (LDF)](cite:cites verborgh_jws_2016) framew
 to explore the range of Web query interfaces that exist between SPARQL endpoints and data dumps,
 and measure trade-offs such as the distribution of query execution load between clients and servers.
 
-Several approaches have emerged following this framework such as [Triple Pattern Fragments (TPF)](cite:cites verborgh_jws_2016) and [Bindings-Restricted TPF (brTPF)](cite:cites brTPF), [SaGe](cite:cites minier2019sage) and [smart-KG](cite:cites smartKG), each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. Smart-KG increases server availability at the cost of higher client effort.
+Several approaches have emerged following this framework such as [Triple Pattern Fragments (TPF)](cite:cites verborgh_jws_2016) and [Bindings-Restricted TPF (brTPF)](cite:cites brTPF), [SaGe](cite:cites minier2019sage) and [smart-KG](cite:cites smartKG), each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. smart-KG increases server availability at the cost of higher client effort.
 
 Research shows that no single optimal approach exists,
 but they all have their advantages and disadvantages.
