@@ -2,12 +2,12 @@
 {:#solution}
 
 The goal of our framework
-is to expose different kinds of server interfaces
+is to expose different server interfaces
 based on the server load and the queries.
 Instead of exposing *just one interface* per query,
 we expose a *collection of interfaces* per query.
 This allows clients to select a combination of interfaces
-based on its capabilities, query plans, and other circumstances.
+based on their capabilities, query plans, and other circumstances.
 
 <figure id="figure-solution">
 <img src="img/hybrid-querying.svg" alt="[Hybrid Linked Data Fragments]" style="height: 10em">
@@ -17,9 +17,7 @@ Overview of client-server communication for a cost-model-based query execution o
 </figure>
 
 To achieve such a server interface hybrid,
-a server cost model selects a set of interfaces based on a given query,
-and a client cost model determines a query plan based on these interfaces.
-[](#figure-solution) shows an overview of this framework
+a server cost model selects a set of interfaces based on a given query and the server current load. While a client cost model determines a query plan based on the granted interfaces. [](#figure-solution) shows an overview of this framework
 where client-side query engines start by sending a query `q` to the server,
 and receive an answer that contains a token `t` and a set of allowed interfaces `I`.
 Based on the returned interfaces,
@@ -29,7 +27,7 @@ These (sub)queries can then be resolved by requesting the appropriate interfaces
 ### Server Component
 
 The server component of our framework consists of
-a cost model for calculating a set of allow interfaces,
+a cost model for calculating a set of allowed interfaces,
 and a token-based wrapper over a set of interfaces.
 
 #### Cost Model
@@ -80,7 +78,7 @@ Based on the server-side cost model,
 the server can wrap over a number of LDF interfaces
 that the publisher wants to expose.
 This wrapper is a proxy that accepts SPARQL queries,
-and replies with a token and a set of allowed interfaces
+and replies with a token and a set of granted interfaces
 that have been calculated for the given query using the server-side cost model.
 The token is *required* for performing any requests to any of the wrapped LDF interfaces.
 
@@ -108,17 +106,15 @@ because the client will be likely to make such a subsequent request.-->
 ### Client Component
 
 Usually, the goal of clients is to execute queries as fast as possible.
-There could however be a number of metrics that can soften this need for fast query execution,
-such as reducing CPU or bandwidth usage, or [optimizing for early results](cite:cites diefficiency)
+There could however be a number of metrics that can soften this need for fast query execution
+such as reducing CPU, bandwidth usage or [optimizing for early results](cite:cites diefficiency).
 
-Using our server-side hybrid of LDF interfaces,
-clients will retrieve a set of allowed interfaces based on a given query.
-Based on this, the client should determine an efficient query plan
-using the interface capabilities with respect to the client's metrics.
-While most client-side query algorithms focus on splitting up queries for execution against a single type of interface,
+Using our server-side hybrid of LDF interfaces, clients will retrieve a set of allowed interfaces based on a given query.
+With respect to the client resources, the client should determine an efficient query plan based on the granted interfaces capabilities.
+While most client-side query algorithms focus on decomposing queries for execution against a single type of interface,
 additional algorithms are needed for [*intelligently combining interfaces* for certain subqueries](cite:cites hetero).
 
 Next to these main metrics, others may also influence selection,
 <!--For example, if the client will execute *many* queries against the same dataset,
 then it can become more efficient to download the full dataset dump.-->
-such as the availability of dataset fragments, locally or [within a network of peers](cite:cites webp2p).
+such as the availability of dataset fragments, [locally](cite:cites smartKG) or [within a network of peers](cite:cites webp2p).
