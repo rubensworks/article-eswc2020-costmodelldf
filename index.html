@@ -12,7 +12,7 @@
   <meta name="citation_author" content="Ruben Taelman" />
   <meta name="citation_author" content="Axel Polleres" />
   
-  <meta name="citation_publication_date" content="2020/03/19" />
+  <meta name="citation_publication_date" content="2020/05/06" />
 </head>
 
 <body prefix="dctypes: http://purl.org/dc/dcmitype/ pimspace: http://www.w3.org/ns/pim/space# rsa: http://www.w3.org/ns/auth/rsa# cert: http://www.w3.org/ns/auth/cert# wgs: http://www.w3.org/2003/01/geo/wgs84_pos# biblio: http://purl.org/net/biblio# bibo: http://purl.org/ontology/bibo/ book: http://purl.org/NET/book/vocab# ov: http://open.vocab.org/terms/ doap: http://usefulinc.com/ns/doap# dbr: http://dbpedia.org/resource/ dbp: http://dbpedia.org/property/ sio: http://semanticscience.org/resource/ opmw: http://www.opmw.org/ontology/ deo: http://purl.org/spar/deo/ doco: http://purl.org/spar/doco/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ solid: http://www.w3.org/ns/solid/terms# acl: http://www.w3.org/ns/auth/acl# dio: https://w3id.org/dio# lsc: http://linkedscience.org/lsc/ns#" typeof="schema:CreativeWork sioc:Post prov:Entity lsc:Research">
@@ -82,7 +82,7 @@ As an alternative, publishing data dumps moves query effort to the client, but t
 Recently, the <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Linked Data Fragments (LDF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> framework was introduced
 to explore the range of Web query interfaces that exist between SPARQL endpoints and data dumps that distribute query execution load between clients and servers.</p>
 
-      <p>Several approaches have emerged following this framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted TPF (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and smart-KG <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. smart-KG increases server availability at the cost of higher client effort. Research shows that no single optimal approach exists,
+      <p>Several approaches have emerged following this framework such as <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/doi:10.1016/j.websem.2016.03.003"><a href="http://linkeddatafragments.org/publications/jws2016.pdf">Triple Pattern Fragments (TPF)</a></span> <span class="references">[<a href="#ref-1">1</a>]</span> and Bindings-Restricted TPF (brTPF) <span class="references">[<a href="#ref-2">2</a>]</span>, SaGe <span class="references">[<a href="#ref-3">3</a>]</span> and <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1145/3366423.3380177"><a href="https://doi.org/10.1145/3366423.3380177">smart-KG</a></span> <span class="references">[<a href="#ref-4">4</a>]</span>, each offering their own trade-offs. For instance, TPF and brTPF increase server availability at the cost of increased network load. SaGe enhances average query performance at the cost of increased server load for concurrent complex queries. smart-KG increases server availability at the cost of higher client effort. Research shows that no single optimal approach exists,
 but they all have their advantages and disadvantages. As such, there is a need for a hybrid LDF approach that determines one or more efficient query approaches based on changing circumstances.</p>
 
       <p>A preliminary hybrid LDF approach <span class="references">[<a href="#ref-5">5</a>]</span> investigated the diversity of LDF characteristics <span class="references">[<a href="#ref-6">6</a>]</span> that can influence query execution plans.
@@ -198,7 +198,7 @@ There could however be a number of metrics that can soften this need for fast qu
 such as reducing CPU, bandwidth usage or optimizing for early results <span class="references">[<a href="#ref-8">8</a>]</span>. Using our server-side hybrid of LDF interfaces, clients will retrieve a set of allowed interfaces based on a given query. With respect to the client resources, the client should determine an efficient query plan based on the granted interfaces capabilities. While most client-side query algorithms focus on decomposing queries for execution against a single type of interface, additional algorithms are needed for <em>intelligently combining interfaces</em> for certain subqueries <span class="references">[<a href="#ref-5">5</a>]</span>. Another metric that influences the selection is
 <!--For example, if the client will execute *many* queries against the same dataset,
 then it can become more efficient to download the full dataset dump.-->
-the location of dataset fragments, locally <span class="references">[<a href="#ref-4">4</a>]</span> or within a network of peers <span class="references">[<a href="#ref-9">9</a>]</span>.</p>
+the location of dataset fragments, <span property="schema:citation http://purl.org/spar/cito/cites" resource="https://dx.doi.org/10.1145/3366423.3380177"><a href="https://doi.org/10.1145/3366423.3380177">locally</a></span> <span class="references">[<a href="#ref-4">4</a>]</span> or within a network of peers <span class="references">[<a href="#ref-9">9</a>]</span>.</p>
 
     </div>
 </section>
@@ -227,7 +227,7 @@ and evaluate different cost models. The client component will be implemented usi
   <dt id="ref-3">[3]</dt>
   <dd resource="#minier2019sage" typeof="schema:Article">Minier, T., Skaf-Molli, H., Molli, P.: SaGe: Web Preemption for Public SPARQL Query Services. The World Wide Web Conference. 1268–1278 (2019).</dd>
   <dt id="ref-4">[4]</dt>
-  <dd resource="https://dx.doi.org/10.1145/3366423.338017" typeof="schema:Article">Azzam, A., Fernandez, J., Acosta, M., Beno, M., Polleres, A.: SMART-KG: Hybrid shipping for SPARQL querying on the web. In: The Web Conference</dd>
+  <dd resource="https://dx.doi.org/10.1145/3366423.3380177" typeof="schema:Article">Azzam, A., Fernández, J.D., Acosta, M., Beno, M., Polleres, A.: SMART-KG: Hybrid Shipping for SPARQL Querying on the Web. In: Proceedings of The Web Conference 2020. pp. 984–994. Association for Computing Machinery, New York, NY, USA (2020).</dd>
   <dt id="ref-5">[5]</dt>
   <dd resource="#hetero" typeof="schema:Article">Montoya, G., Aebeloe, C., Hose, K.: Towards Efficient Query Processing over Heterogeneous RDF Interfaces. In: DeSemWeb@ISWC (2018).</dd>
   <dt id="ref-6">[6]</dt>
